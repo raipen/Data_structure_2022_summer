@@ -47,7 +47,7 @@
 
  * Space Complexity
 
-   * S(P) = c + S~p~(n)
+   * S(P) = c + S<sub>p</sub>(n)
 
      * S(P): space requirement of program P(알고리즘과 무관한 부분까지 포함)
 
@@ -63,7 +63,7 @@
 
      * n : Instance characteristics (ex: I/O size, number)
 
-     * S~p~(n): 알고리즘과 밀접한 부분만
+     * S<sub>p</sub>(n): 알고리즘과 밀접한 부분만
 
    * ```c
      float abc(float a, float b, float c){
@@ -71,7 +71,7 @@
      }
      ```
 
-   * S~abc~(n) = 0
+   * S<sub>abc</sub>(n) = 0
 
    * ```c
      float sum(float list[],int n){
@@ -83,5 +83,5 @@
      }
      ```
 
-   * S~sum~(n) = n+3
+   * S<sub>sum</sub>(n) = n+3
 
