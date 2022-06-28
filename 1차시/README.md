@@ -205,9 +205,9 @@
 ## Asymptotic notation (O, Ω, Θ)
 
 * To make meaningful statements about the complexity of the program's time and space
-* $1(constant)<\log{n}<n(linear)<n\log{n}<n^2(quadratic)<n^3(cubic)<\cdots<2^n(exponential)$
+* $1 (constant) < \log{n} < n (linear) < n \log{n} < n^2 (quadratic) < n^3 (cubic) < \cdots < 2^n (exponential)$
 * big-O notation
-  * $f(n)=O(g(n))$ (read as "$f$ of $n$ is **big oh** of $g$ of $n$") iff $∃c,n_0>0, s.t. f(n) ≤ c g(n)$ $∀n, n≥n_0$
+  * $f(n)=O(g(n))$ (read as "$f$ of $n$ is **big oh** of $g $ of $n $") iff $∃c,n_0>0, s.t. f(n) ≤ c g(n)$ $∀n, n≥n_0$
   * $∀n, n≥n_0, g(n)$ is upper bound on $f(n)$
   * e.g:
     * $3n+3= O(n)$ as $3n+3≤4n$ for $n≥3$
@@ -215,7 +215,7 @@
     * $10n^2 + 4n + 2 = $
     * $6*2^n + n^2 = $
 * Omega notation
-  * $f(n)=\Omega(g(n))$ (read as "$f$ of $n$ is **omega** of $g$ of $n$") iff $∃c,n_0>0, s.t. f(n) ≥ c g(n)$ $∀n, n≥n_0$
+  * $f(n)=\Omega(g(n))$ (read as "$f$ of $n$ is **omega** of $g $ of $n $") iff $∃c,n_0>0, s.t. f(n) ≥ c g(n)$ $∀n, n≥n_0$
   * $∀n, n≥n_0, g(n)$ is lower bound on $f(n)$
   * e.g:
     * $3n+2=Ω(n)$ as $3n + 2 ≥ 3n$ for $n≥1$
@@ -223,9 +223,9 @@
     * $10n^2+4n+2=Ω(n)$ as $10n^2+4n+2≥n$ for $n≥1$
     * $6*2^n + n^2 =$​
 * Theta notation
-  * $f(n)=\Theta(g(n))$ (read as "$f$ of $n$ is **theta** of $g$ of $n$") iff $∃c_1,c_2,n_0>0, s.t. c_1g(n)≤f(n) ≤ c_2g(n)$ $∀n, n≥n_0$
+  * $f(n)=\Theta(g(n))$ (read as "$f$ of $n$ is **theta** of $g $ of $n $") iff $∃c_1,c_2,n_0>0, s.t. c_1g(n)≤f(n) ≤ c_2g(n)$ $∀n, n≥n_0$
   * $∀n, n≥n_0, g(n)$ is both upper and lower bound on $f(n)$
-  * $f(n)=\Theta(g(n))$ means $f(x)=O(g(x)) \&\& f(x)=\Omega(g(x))$
+  * $f(n)=\Theta(g(n))$ means $f(x)=O(g(x))$ and $f(x)=\Omega(g(x))$
   * e.g:
     * $3n+2=\Theta(n)$ as $3n≤3n + 2≤4n$ for $n>=2$
     * $10n^2+4n+2=$
