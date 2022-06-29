@@ -244,15 +244,15 @@
     …
     = (…((T(0) + 1) + 1)… ) + 1 = n+1 = O(n)
 
-* Recurrence equation (assume that n = 2k)
+* Recurrence equation (assume that n = 2^k)
   * T(n) = T(n/2) + 1
   * T(1) = 1
   * Solve T(n), and compute big-oh function
     T(n) = T(n/2) + 1
-    = (T(n/22) + 1) + 1
-    = ((T(n/23) + 1) + 1) + 1
+    = (T(n/2^2) + 1) + 1
+    = ((T(n/2^3) + 1) + 1) + 1
     …
-    = (…((T(n/2k) + 1) + 1) … ) + 1 = 1+k = 1+log2n
+    = (…((T(n/2^k) + 1) + 1) … ) + 1 = 1+k = 1+log2n
     = O(log2n)
 
 
@@ -290,13 +290,73 @@ score.txt로부터 이름, 국어,영어,수학 성적을 입력받아 이름과
 
 ### 과제2
 
-표준입력으로 정수 n을 입력받아 n*n 행렬을 2개 A,B 만들고 각 행렬을 0~20 사이의 랜덤한 수로 채우시오. 행렬 A와 B를 출력하고 두 행렬의 합 C를 출력하시오.
+표준입력으로 정수 n을 입력받아 n 배열을 2개 1,2 만들고 각 배열을 0~20 사이의 랜덤한 수로 채우시오. 배열 1,2를 출력하고 두 배열의 합을 출력하시오.
+
+* 실행창 결과
+
+```txt
+Input size: 5 
+Array1:   1  9  8 10 15
+Array2:   4 19 10  9 10
+result:   5 28 18 19 25
+```
 
 
 
-### 과제3
+### 과제3(그냥 실행해보기...)
 
-n의 사이즈에 따른 selectionSort 실행 시간을 측정하시오.
+n의 사이즈에 따른 selectionSort 실행 시간을 측정하시오. 
+
+* selectionSort.h
+
+```c
+#pragma once
+#include <stdio.h>
+#define SWAP(a,b,c) c=a, a=b, b=c
+
+void sort(int list[],int n){
+    int i,j,min,temp;
+    for(i=0;i<n-1;i++){
+        min = i;
+        for(j=i+1;j<n;j++)
+            if(list[j]<list[min])
+            min = j;
+        SWAP(list[i],list[min],temp);
+    }
+}
+```
+
+* main.c
+
+```c
+#include <stdio.h>
+#include "selectionSort.h"
+#include <time.h>
+#define MAX_SIZE 1001
+
+void main(void) {
+	int i, n, step = 10;
+	int a[MAX_SIZE];
+	double d;
+	clock_t start;
+	printf("     n\ttime\n");
+	for (n = 0;n <= 1000;n += step) {
+
+		for (i = 0;i < n;i++)
+			a[i] = n - i;
+
+		start = clock();
+		sort(a, n);
+		d = ((double)(clock() - start)) / CLOCKS_PER_SEC;
+		printf("%6d\t%f\n", n, d);
+		if (n == 100) step = 100;
+	}
+}
+```
+
+
+
+
 
 
 

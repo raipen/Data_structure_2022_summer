@@ -1,10 +1,10 @@
-all: pb1
+all: pb3
 
-pb1: selectionSort.o pb1.o
-	gcc -o pb1.out selectionSort.o pb1.o
+pb3: selectionSort.o pb3.o
+	gcc -o pb3.out selectionSort.o pb3.o
 
 selectionSort.o: selectionSort.h selectionSort.c
 	gcc -c -o selectionSort.o selectionSort.c
 
-pb1.o: pb1.c selectionSort.h
-	gcc -c -o pb1.o pb1.c
+pb3.o: pb3.c selectionSort.h
+	gcc -c -o pb3.o pb3.c
