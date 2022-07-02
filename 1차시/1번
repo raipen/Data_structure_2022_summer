@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+struct student {
+	char name[30];
+	int kor;
+	int eng;
+	int math;
+	int avg;
+};
+
+void main()
+{
+	struct student stu[30];
+	FILE* fp,*fp1;
+	int i = 0;
+	fp=fopen("score.txt", "r");
+	fp1 = fopen("result.txt", "w");
+	while (fscanf(fp, "%s %d %d %d", &stu[i].name, &stu[i].kor, &stu[i].eng, &stu[i].math) != EOF)
+	{
+		stu[i].avg = (stu[i].kor + stu[i].eng + stu[i].math) / 3;
+		fprintf(fp1, "%s %d\n",stu[i].name, stu[i].avg );
+		printf("%s %d\n", stu[i].name, stu[i].avg);
+		i++;
+	}
+
+	fclose(fp);
+	fclose(fp1);
+	
+}
