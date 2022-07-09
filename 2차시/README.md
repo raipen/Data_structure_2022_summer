@@ -41,7 +41,7 @@
 
 ### 1D array
 
-![image-20220708045502797](img\image-20220708045502797.png)
+![image-20220708045502797](img/image-20220708045502797.png)
 
 * map into configuous memory locations
 
@@ -71,12 +71,12 @@ int main(void){
 void print1(int*, int);
 
 void main(){  
- int one[] = { 0, 1, 2, 3, 4};
- int size = _____________________;
- print1Darry(____,____);
+	int one[] = { 0, 1, 2, 3, 4};
+	int size = _____________________;
+	print1Darry(____,____);
 }
 
-void print1(int *ptr, int row){
+void print1Darry(int *ptr, int row){
 	/* print out a one-dimensional array using a pointer */
 	int i;
 	printf("Address Contents\n");
@@ -88,8 +88,6 @@ void print1(int *ptr, int row){
 
 <details>
 	<summary>정답보기/가리기</summary>
-
-
 ```c
 void main(){	
 	int one[] = { 0, 1, 2, 3, 4};
@@ -98,4 +96,33 @@ void main(){
 }
 ```
 </details>
+
+* 참조와 역참조
+
+  * 참조: 포인터가 주소를 가리키는 것 ex) ```int i=3,*a =&i;``` a는 i의 주소를 참조하고 있다
+
+  * 역참조: 주소에 있는 값에 접근 하는 것 ex) ```printf("%d",*a);``` ``` *a = 3;``` a가 가리키는 주소의 값을 역참조하고 있다.![img](img/img.png)
+
+  * list[i]가 '=' 우측 : (list+i)가 가리키는 값 반환 
+
+    list[i]가 '=' 좌측 : 값을 (list+i) 위치에 저장
+
+    *  (예) list[1]=list[2] : 둘다 역참조 중이다.
+
+* A\[u1]\[u2]\[u3]\[u4]; A\[0]\[0]\[0]\[0] → position a
+  * A\[0]\[0]\[0]\[1] → position a + 1
+  * A\[0]\[0]\[0]\[u4-1] → position a + u4 -1
+  * A\[0]\[0]\[1]\[0] → position a + u4
+  * A\[i]\[j]\[k]\[l] → position: a + $i*u_2 u_3 u_4 + j*u_3 u_4 + k * u_4 + m$
+
+* 연습문제
+
+  ```
+  int arr[3][4][5][6];
+  arr[2][3][1][0] == &a[0][0][0][0]+___?
+  ```
+
+
+
+
 
