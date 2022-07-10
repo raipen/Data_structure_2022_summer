@@ -1,0 +1,46 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void main()
+{
+	int n, i;
+	printf("Input size: ");
+	scanf("%d", &n);
+	srand(time(NULL));
+	int* arr = (int*)malloc(sizeof(int) * n);
+	int* arr1 = (int*)malloc(sizeof(int) * n);
+	printf("Array1: ");
+	for (i = 0;i < n;i++)
+	{
+		arr[i] = rand() & 10;
+		printf("%d ", arr[i]);
+	}
+	printf("\nArray2: ");
+	for (i = 0;i < n;i++)
+	{
+		arr1[i] = rand() & 10;
+		printf("%d ", arr1[i]);
+	}
+	printf("\nresult: ");
+
+	int* c = printarr(arr, arr1, n);
+	for (i = 0;i < n;i++)
+	{
+		printf("%d ", c[i]);
+	}
+	
+	free(arr);
+	free(arr1);
+
+}
+
+int printarr(int a[100], int b[100],int n)
+{
+	int i;
+	int *c[100];
+	for (i = 0;i < n;i++)
+	{
+		c[i]=a[i] + b[i];
+	}
+	return c;
+}
