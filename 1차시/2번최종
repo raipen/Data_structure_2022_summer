@@ -12,13 +12,13 @@ void main()
 	printf("Array1: ");
 	for (i = 0;i < n;i++)
 	{
-		arr[i] = rand() % 20;
+		arr[i] = rand() % 21;
 		printf("%d ", arr[i]);
 	}
 	printf("\nArray2: ");
 	for (i = 0;i < n;i++)
 	{
-		arr1[i] = rand() % 20;
+		arr1[i] = rand() % 21;
 		printf("%d ", arr1[i]);
 	}
 	printf("\nresult: ");
