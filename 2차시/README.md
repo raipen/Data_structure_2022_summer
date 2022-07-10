@@ -51,7 +51,7 @@
 ``` c
 int main(void){
     int i,*list,list2[5] = {0,1,2,3,4}; list1 = list2; //declaration
-    printf(list2 == &list2[0] ? "true\n" : "false");
+    printf(list1 == &list2[0] ? "true\n" : "false");
     scanf("%d",&i);
     printf(list2 + i == &list1[i]  ? "true\n" : "false");
     scanf("%d",&i);
