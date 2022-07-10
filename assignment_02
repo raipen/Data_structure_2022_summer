@@ -1,0 +1,73 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h> //seed
+#include <stdlib.h> //rand()
+
+int main(void)
+{   
+    clock_t start = clock();
+
+    int n = 0;
+    printf("size: ");
+    scanf("%d", &n);
+
+    int A[n][n] = {0};
+    int B[n][n] = {0};
+
+    for (int i = 0 ; i < n ; i++)
+    {
+        for (int j = 0 ; j < n ; j++)
+        {
+            A[i][j] = srand(time(NULL)) % 21;
+            B[i][j] = srand(time(NULL)) % 21;
+        }
+    }
+    
+    for (int i = 0 ; i < n ; i++)
+    {
+        printf("[");
+        for (int j = 0 ; j < n ; j++)
+        {
+            printf("%3d", A[i][j]);
+        }
+        printf("]\n");
+    }
+
+        printf("\n\n");
+
+    for (int i = 0 ; i < n ; i++)
+    {
+        printf("[");
+        for (int j = 0 ; j < n ; j++)
+        {
+            printf("%3d", B[i][j]);
+        }
+        printf("]\n");
+    }
+
+    int C[n][n] = {0};
+
+    for (int i = 0 ; i < n ; i++)
+    {
+        for (int j = 0 ; j < n ; j++)
+        {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+        printf("\n\n");
+
+    for (int i = 0 ; i < n ; i++)
+    {
+        printf("[");
+        for (int j = 0 ; j < n ; j++)
+        {
+            printf("%3d", C[i][j]);
+        }
+        printf("]\n");
+    }
+
+    double duration = ((double)(clock() - start)) / CLOCKS_PER_SEC;
+    
+    return 0;
+}
