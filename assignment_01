@@ -1,0 +1,81 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct score
+{
+    char name[20];
+    int korean;
+    int english;
+    int math;
+};
+
+int main(void)
+{
+    struct score data[10];
+    FILE *f;
+    f = fopen("score.txt", "w");
+
+    if(f == NULL)
+    {
+        printf("파일열기 실패\n");
+        exit(0);
+    }
+    
+    printf("이름 국어 영어 수학 성정을 입력하시오. (입력종료: END 0 0)\n");
+    scanf("%6s %4d %4d %4d", data[0].name, &data[0].korean, &data[0].english, &data[0].math);
+    
+    int n = 0;
+
+    while(!feof(f))
+    {
+        fprintf(f,"%6s %4d %4d %4d\n", data[n].name, data[n].korean, data[n].english, data[n].math);
+        scanf("%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math);
+        n++;
+    }    
+    
+    fclose(f);
+
+    f = fopen("score.txt", "r");
+
+    if(f == NULL)
+    {
+        printf("파일열기 실패\n");
+        exit(0);
+    }
+
+    FILE *fp;
+    fp = fopen("result.txt", "w");
+    if(fp == NULL)
+    {
+        printf("파일열기 실패\n");
+        exit(0);
+    }
+
+    n = 0;
+
+    while(fscanf(f,"%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
+    {
+        fprintf(fp,"%6s %4d %4d %4d\n", data[n].name, data[n].korean, data[n].english, data[n].math);
+    }
+    
+    fclose(f);
+    fclose(fp);
+
+    fp = fopen("result.txt", "w");
+    if(fp == NULL)
+    {
+        printf("파일열기 실패\n");
+        exit(0);
+    }
+
+    while(fscanf(fp,"%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
+    {
+        printf("%6s %4d %4d %4d\n", data[n].name, data[n].korean, data[n].english, data[n].math);
+    }
+
+    fclose(fp);
+
+    return 0;
+}
