@@ -29,20 +29,15 @@ int main(void)
 
     int n = 0;
 
-    while(fscanf(f,"%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
+    while(fscanf(f,"%s %d %d %d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
     {
         fprintf(fp,"%6s %4d %4d %4d\n", data[n].name, data[n].korean, data[n].english, data[n].math);
+        printf("%6s %4d %4d %4d\n", data[n].name, (data[n].korean + data[n].english + data[n].math)/3);
     }
     
     fclose(f);
-   
-
-    while(fscanf(fp,"%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
-    {
-        printf("%6s %4d %4d %4d\n", data[n].name, data[n].korean, data[n].english, data[n].math);
-    }
-
     fclose(fp);
 
     return 0;
 }
+
