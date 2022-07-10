@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <stdlib.h>//동적할당시 필요함.
 
 void main()
 {
@@ -31,13 +32,14 @@ void main()
 	
 	free(arr);
 	free(arr1);
+	free(c);
 
 }
 
-int printarr(int a[100], int b[100],int n)
+int *printarr(int a[100], int b[100],int n)
 {
 	int i;
-	int *c[100];
+	int* c = (int*)malloc(sizeof(int) * n);
 	for (i = 0;i < n;i++)
 	{
 		c[i]=a[i] + b[i];
