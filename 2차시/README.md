@@ -129,7 +129,7 @@ void main(){
 ## Dynamic memory allocation
 
 ```c
-type pf = (type *) malloc (sizeof(type));
+type* pf = (type *) malloc (sizeof(type));
 ```
 
 ```c
