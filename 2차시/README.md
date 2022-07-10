@@ -183,19 +183,19 @@ exit(EXIT_FAILURE);\
 }
 
 int main(void){
-    int** staticArr[2][3],** dynamicArr;
-    MALLOC(dynamicArr,sizeof(int*)*2);
-    for(int i=0;i<2;i++){
+    int** staticArr[5][3],** dynamicArr;
+    MALLOC(dynamicArr,sizeof(int*)*5);
+    for(int i=0;i<5;i++){
         MALLOC(dynamicArr[i],sizeof(int)*3)
     }
     printf("할당 완료");
-    printf("sizeof(staticArr) = %d, staticArr = %p\n",sizeof(staticArr), staticArr);
-    for(int i=0;i<2;i++){
-        printf("%s[%d] = %p","static",i,staticArr[i]);
+    printf("sizeof(staticArr) = %ld, staticArr = %p\n",sizeof(staticArr), staticArr);
+    for(int i=0;i<5;i++){
+        printf("%s[%d] = %p\n","static",i,staticArr[i]);
     }
-    printf("sizeof(dynamicArr) = %d, dynamicArr = %p\n",sizeof(dynamicArr), dynamicArr);
-    for(int i=0;i<2;i++){
-        printf("%s[%d] = %p","static",i,staticArr[i]);
+    printf("sizeof(dynamicArr) = %ld, dynamicArr = %p\n",sizeof(dynamicArr), dynamicArr);
+    for(int i=0;i<5;i++){
+        printf("%s[%d] = %p\n","dynamicArr",i,dynamicArr[i]);
     }
 }
 ```
