@@ -115,7 +115,7 @@ void main(){
   * A\[0]\[0]\[0]\[1] → position a + 1
   * A\[0]\[0]\[0]\[u4-1] → position a + u4 -1
   * A\[0]\[0]\[1]\[0] → position a + u4
-  * A\[i]\[j]\[k]\[l] → position: a + $i*u_2 u_3 u_4 + j*u_3 u_4 + k * u_4 + m$
+  * A\[i]\[j]\[k]\[l] → position: a + $ i*u_2 u_3 u_4 + j*u_3 u_4 + k * u_4 + m $
 
 * 연습문제
 
