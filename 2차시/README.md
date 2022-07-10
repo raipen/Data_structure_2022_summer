@@ -124,5 +124,206 @@ void main(){
 
 
 
+## Dynamic memory allocation
+
+```c
+type pf = (type *) malloc (sizeof(type));
+```
+
+```c
+#define MALLOC(p,s) \
+if (! ( (p) = malloc ( s) ) ) { \
+fprintf(stderr, "Insufficient memory"); \
+exit(EXIT_FAILURE);\
+}
+
+int* pi;
+MALLOC(pi,sizeof(int));
+```
+
+* [malloc](https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/malloc?view=msvc-170)
+* [calloc](https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/calloc?view=msvc-170) - allocated bits are set to 0
+* [realloc](https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/realloc?view=msvc-170) - changes the size of memory block
+
+### 2D array allocation and deallocation
+
+![image-20220710061131793](img/image-20220710061131793.png)
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define MALLOC(p,s) \
+if (! ( (p) = malloc ( s) ) ) { \
+fprintf(stderr, "Insufficient memory"); \
+exit(EXIT_FAILURE);\
+}
+
+int main(void){
+    int** matrix;
+    MALLOC(matrix,sizeof(int*)*5);
+    for(int i=0;i<5;i++){
+        MALLOC(matrix[i],sizeof(int)*6)
+    }
+    printf("할당 완료");
+    //할당 해제는 어떻게? (참고: free(할당 해제할 주소)를 사용해서)
+    
+    printf("할당 해제 완료");
+}
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define MALLOC(p,s) \
+if (! ( (p) = malloc ( s) ) ) { \
+fprintf(stderr, "Insufficient memory"); \
+exit(EXIT_FAILURE);\
+}
+
+int main(void){
+    int** staticArr[2][3],** dynamicArr;
+    MALLOC(dynamicArr,sizeof(int*)*2);
+    for(int i=0;i<2;i++){
+        MALLOC(dynamicArr[i],sizeof(int)*3)
+    }
+    printf("할당 완료");
+    printf("sizeof(staticArr) = %d, staticArr = %p\n",sizeof(staticArr), staticArr);
+    for(int i=0;i<2;i++){
+        printf("%s[%d] = %p","static",i,staticArr[i]);
+    }
+    printf("sizeof(dynamicArr) = %d, dynamicArr = %p\n",sizeof(dynamicArr), dynamicArr);
+    for(int i=0;i<2;i++){
+        printf("%s[%d] = %p","static",i,staticArr[i]);
+    }
+}
+```
+
+
+
+## Structues
+
+* How to use ```struct ``` and ```typedef```
+
+  ```c
+  struct 구조이름{
+     구조내용;
+  };
+  
+  struct{
+     구조내용;
+  } 변수이름;
+  
+  struct 구조이름{
+     구조내용;
+  } 변수이름;
+  
+  typedef struct 구조이름{
+     구조내용;
+  }생략구조이름;
+  
+  typedef struct{
+     구조내용;
+  }생략구조이름;
+  ```
+
+* A structure is a coolection of data items
+
+  ```c
+  typedef struct {
+  	char name[10];
+  	int age;
+  } Person;
+  
+  Person person;
+  strcpy(person.name, "james");
+  person.age =10;
+  ```
+
+* Embedding a structure within structure
+
+  ```c
+  typedef struct{
+      int year;
+      int month;
+      int year;
+  } Date;
+  typedef struct{
+      char name[10];
+      int age;
+      date birth;
+  } Person;
+  
+  Person person;
+  strcpy(person.name, "ji1");
+  person.age = 22;
+  person.birth.year = 2001;
+  person.birth.month = 1;
+  person.birth.day = 27;
+  ```
+
+* Self-Referential Structures
+
+  ```c
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <string.h>
+  
+  typedef struct{
+      int year;
+      int month;
+      int day;
+  } Date;
+  typedef struct person{
+      char name[30];
+      int age;
+      Date birth;
+      struct person* mother;
+      struct person* father;
+  } Person;
+  
+  int main(void){
+      Person person;
+      strcpy(person.name, "Kim Geumjjok");
+      person.age = 20;
+      person.birth.year = 2003;
+      person.birth.month = 8;
+      person.birth.day = 29;
+  
+      Person person2 = {"Oh Eunyoung",53,{1970,5,14}};
+      person.mother = &person2;
+      
+      person.father = (Person*) malloc(sizeof(Person));
+      strcpy(person.father->name,"Kim Nampyeon");
+      person.father->age = 55;
+      person.father->birth.year = 1968;
+      person.father->birth.month = 3;
+      person.father->birth.day = 1;
+      
+      Date today = {2022,7,11};
+      Person baby = {"Kim Jammin",1,today,&person,NULL};
+  
+      printf("%s's mother is %s\n", person.name, person.mother->name);
+      printf("%s's father's birthday is %d. %d. %d\n", person.name, person.father->birth.year, person.father->birth.month,person.father->birth.day);
+      printf("date of birth of the baby whose mother is %s is %d. %d. %d.\n",baby.mother->name,baby.birth.year,baby.birth.month,baby.birth.day);
+      puts("");
+  	for(Person* temp = &baby;temp!=NULL;temp = temp->mother){
+          if(temp->mother == NULL)
+              printf("No information about %s's mother.\n",temp->name);
+          else
+  	        printf("%s's mother is %s.\n",temp->name,temp->mother->name);
+      }
+  }
+  ```
+
+  
+
+
+
+
+
+
+
+
+
 
 
