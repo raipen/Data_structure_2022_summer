@@ -25,11 +25,7 @@ int main(void)
 
     FILE *fp;
     fp = fopen("result.txt", "w");
-    if(fp == NULL)
-    {
-        printf("파일열기 실패\n");
-        exit(0);
-    }
+   
 
     int n = 0;
 
@@ -39,14 +35,7 @@ int main(void)
     }
     
     fclose(f);
-    fclose(fp);
-
-    fp = fopen("result.txt", "w");
-    if(fp == NULL)
-    {
-        printf("파일열기 실패\n");
-        exit(0);
-    }
+   
 
     while(fscanf(fp,"%6s %4d %4d %4d", data[n].name, &data[n].korean, &data[n].english, &data[n].math) != EOF)
     {
