@@ -89,6 +89,7 @@ void print1Darry(int *ptr, int row){
 
 <details>
 	<summary>정답보기/가리기</summary>
+	
 ```c
 void main(){	
 	int one[] = { 0, 1, 2, 3, 4};
