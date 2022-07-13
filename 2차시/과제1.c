@@ -4,6 +4,7 @@
 void ibs(int* arr, int start, int end, int num);
 void rbs(int* arr, int start, int end, int num);
 
+//정상작동
 int main()
 {
     int arr[9], num;
