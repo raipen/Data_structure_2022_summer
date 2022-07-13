@@ -25,6 +25,8 @@ int zero(int num, int count)
         zero(num / 2, ++count);
 }
 
+//정상작동
+
 int main()
 {
     int num, count = 0;
