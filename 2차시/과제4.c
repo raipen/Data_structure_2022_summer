@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//정상작동
+
 int main()
 {
 	int row, col;
