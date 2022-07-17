@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+//21 리턴 자체가 안됨. 63 80 99 121없음으로 리턴됨.
+
 int ibs(int a[], int l, int h, int n)
 {
 	while (l <= h)
@@ -20,21 +22,19 @@ int ibs(int a[], int l, int h, int n)
 		}
 	}
 	return -1;
-	//리턴 시에 return mid가 되지 않고 -1로만 리턴됨.(킹받드라슈)
-
 }
 
 int rbs(int a[], int l, int h, int n)
 {
-	if (l <= h)
-	{
-		int mid = l + h / 2;
-		if (a[mid] == n) return mid;
-		if (n < a[mid]) return rbs(a, l, mid - 1, n);
+	int mid;
+	if (h < l) return -1;
+	mid = l + h / 2;
+	if (a[mid] > n)
+		return rbs(a, l, mid - 1, n);
+	else if (a[mid] < n)
 		return rbs(a, mid + 1, h, n);
-	}
-	return -1;
-	//리턴 시에 return mid가 되지 않고 -1로만 리턴됨.(킹받드라슈)
+	else
+		return mid;
 }
 
 void main()
@@ -59,7 +59,7 @@ void main()
 
 	//배열 크기
 	int size = sizeof(a) / sizeof(a[0]);
-
+	
 	//출력
 	while (1)
 	{
@@ -90,7 +90,5 @@ void main()
 		{
 			printf("있음\n");
 		}
-
 	}
-	//리턴이 안되요!!!!!!!!!!!!!!
 }
