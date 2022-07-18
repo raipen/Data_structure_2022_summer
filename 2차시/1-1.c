@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-//21 리턴 자체가 안됨. 63 80 99 121없음으로 리턴됨.
+//21 리턴 자체가 안됨. 63 80 99 121없음으로 리턴됨
 
 int ibs(int a[], int l, int h, int n)
 {
