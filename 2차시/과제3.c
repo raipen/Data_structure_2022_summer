@@ -6,7 +6,7 @@ int isSame(int n, int arr[], int head, int tail) {
 	while (head <= tail) {
 		int mid = (head + tail) / 2;
 		if (n == arr[mid]) return 1;
-		if (n > arr[mid]) head = mid + 1;
+		if (n < arr[mid]) head = mid + 1;
 		else tail = mid - 1;
 	}
 	return 0;
@@ -27,14 +27,13 @@ void main() {
 		fscanf(f2, "%d", &arr2[i]);
 
 	for (i = 0; i < n1; i++) {
-		if (isSame(arr1[i], arr2, 0, n2)) {
+		if (isSame(arr1[i], arr2, 1, n2)) {
 			arr3[cnt] = arr1[i];
 			cnt++;
 		}
 	}
 	for (i = 0; i < cnt; i++)
 		printf("%d ", arr3[i]);
-
 	free(arr1);
 	free(arr2);
 	free(arr3);
