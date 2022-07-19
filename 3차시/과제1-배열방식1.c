@@ -30,7 +30,7 @@ Polynomial readPolynomialFromFile(FILE* file){
     int coefficient,exponent;
     while(fscanf(file, "%d %d", &coefficient,&exponent)==2){
         temp.coef[exponent]=coefficient;
-        temp.degree = temp.degree>exponent?temp.degree:exponent;
+        temp.degree = MAX(temp.degree,exponent);
     }
     return temp;
 }
