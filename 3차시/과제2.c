@@ -13,13 +13,12 @@ void printMatrix(tuple t[]) {
 		arr[t[i].row][t[i].col] = t[i].val;
 	for (int i = 0; i < t[0].row; i++) {
 		for (int j = 0; j < t[0].col; j++) 
-			printf("%d ", arr[i][j]);
+			printf("%2d ", arr[i][j]);
 		printf("\n");
 	}
 }
 
-tuple* transpose(tuple t[]) {
-	tuple res[50];
+tuple* transpose(tuple t[], tuple res[]) {
 	int i, count[50] = { 0 }, idx[50];
 	res[0].row = t[0].col;
 	res[0].col = t[0].row;
@@ -42,7 +41,7 @@ tuple* transpose(tuple t[]) {
 
 void main() {
 	FILE* f1, * f2;
-	tuple t1[100], t2[100];
+	tuple t1[100], t2[100], res1[50], res2[50];
 	int i;
 	f1 = fopen("m1.txt", "r");
 	f2 = fopen("m2.txt", "r");
@@ -55,7 +54,12 @@ void main() {
 	fclose(f1);
 	fclose(f2);
 
+	printf("Before transposing m1\n");
+	printMatrix(t1);
+	printf("\nAfter transposing m1\n");
+	printMatrix(transpose(t1, res1));
+	printf("\nBefore transposing m2\n");
 	printMatrix(t2);
-	printf("\n");
-	printMatrix(transpose(t2));
+	printf("\nAfter transposing m2\n");
+	printMatrix(transpose(t2, res2));
 }
