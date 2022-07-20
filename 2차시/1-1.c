@@ -1,3 +1,5 @@
+//제대로 작동 안함
+//ibs 실행 안됨, rbs 값 제대로 출력 안함
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
