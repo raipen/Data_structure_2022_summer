@@ -1,4 +1,7 @@
 //정상 작동함
+//1. 반복되는 부분이 너무 많음. 이럴땐 함수로 묶어주는 것도 좋음
+//2. 두 자료가 내림차순으로 이루어져있다는 것을 사용하면 이중for문을 쓰지 않고 구현 가능
+// 즉, 시간복잡도를 O(n^2)에서 O(n)으로 줄일 수 있음.
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,4 +1,7 @@
 //정상 작동함
+/*
+ 이중for문으로 하는 전치로 구현되어 있음. 반드시 시간내서 fast transpose algorithm을 구현할 것
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
