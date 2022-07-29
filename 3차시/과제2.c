@@ -1,6 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
+/*
+걍 너무 깔끔함
+희소 행렬의 빠른 전치 알고리즘 완벽하게 이해하고 짠 코드라는게 느껴짐
+막코딩이나 복붙코딩이랑 다르게 불필요한 내용 없이 깔끔하게 떨어져서 좋다.
+*/
 typedef struct {
 	int row;
 	int col;

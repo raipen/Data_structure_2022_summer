@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+굿
+*/
+
+
 void main() {
 	int** arr;
 	int row, col;
