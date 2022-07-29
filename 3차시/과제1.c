@@ -2,6 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+정말 잘 했는데 더했을 때 0이 되는 항를 어떻게 처리하면 좋을까?
+생각보다 간단해. 한 두줄만 추가하면 됨.
+한번 해결해서 올려보고 나한테 톡해줘
+해결 못해도 톡 ㅇㅇ
+*/
+
 typedef struct {
 	int coef;
 	int expo;

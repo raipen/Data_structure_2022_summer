@@ -4,6 +4,15 @@
 void ibs(int* arr, int start, int end, int num);
 void rbs(int* arr, int start, int end, int num);
 
+/*
+1. 문제에서 주어진 in.txt에는 문제 없지만
+    보통 채점할때는 어떤 in.txt 가 주어질 지 알 수 없다는 생각으로 코드를 짜야함
+    즉, int arr[9];로 9칸만 딱 만들어두는 것보다는 대충 큰 값으로 잡아두는게 좋음
+    그리고 end의 경우에도 arr[]로부터 할당된 공간의 크기를 대입하는것이 아니라
+    fscanf로 가지고 온 값의 개수를 end로 삼아야함.
+
+*/
+
 //정상작동
 int main()
 {
