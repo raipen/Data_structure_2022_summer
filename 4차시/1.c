@@ -7,6 +7,13 @@ typedef struct stack {
 	int capacity;
 }stack;
 
+/*
+1. 다 잘했는데 push 함수에서 if (sta->top < sta->capacity - 1) 이거 if(!IsFull(sta)) 로 바꿔주면 굳이 주석을 안 달지 않아도 의미 전달 가능
+2. pop 함수의 경우 반환형이 void여도 상관은 없는데
+	관습적으로 보통 꺼낸 값을 활용하기 위해 그 값을 리턴해줌. 이 경우엔 int를 반환하고, return value;를 해줌
+
+*/
+
 void initialize(stack* sta);
 int IsEmpty(stack* sta);
 int IsFull(stack* sta);

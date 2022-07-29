@@ -2,6 +2,10 @@
 #include <stdio.h>
 
 //21 리턴 자체가 안됨. 63 80 99 121없음으로 리턴됨
+// 1. ""void""" main 인데 return 0;가 있음. VS에선 문제 없으나 다른 C언어 컴파일러에선 무조건 오류남
+// 2. ibs와 rbs 모두 mid 검사 값이 잘못됨 ( l + h /2 가 아니라 (l+h)/2 .. 더하기 먼저 하도록 괄호를 했어야함)
+// 3. 배열의 크기가 기준이 되어서 함수를 시작하면 안 됨. 자료의 개수로 해야함. 일단 이 코드 상에서는 자료의 개수도 9개고 size-1도 9라서 작동함.
+// 3번 보충: 네 코드 기준으로 int size = i;로 하고 ibs(a, 0, size, n)로 호출 되어야함
 
 int ibs(int a[], int l, int h, int n)
 {
@@ -37,7 +41,7 @@ int rbs(int a[], int l, int h, int n)
 		return mid;
 }
 
-void main()
+int main()
 {
 	FILE* fp;
 	int a[10];

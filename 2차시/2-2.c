@@ -3,7 +3,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-void main()
+/*다 좋은데
+free(p[i]); 먼저하고
+printf("free arr[%d].\n", i); 얘를 출력하는게
+제대로 free 됐는지 확인 하는 방법 이긴 해
+*/
+
+int main()
 {
 	int row, col, i, j;
 	printf("row size:");

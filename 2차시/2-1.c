@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//1. 두 파일에 대해 똑같은 동작을 두번 하고 있기 때문에 함수로 처리하면 좋다
+//2. 교집합을 출력하는 과정이 O(n^2)이다. 내림차순으로 저장되어 있기 때문에 O(n)으로 해결 가능하다.
 
-void main()
+int main()
 {
 	FILE* fp;
 	FILE* fp1;
