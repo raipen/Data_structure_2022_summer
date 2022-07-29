@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+ 이중for문으로 하는 전치로 구현되어있다. 반드시 시간내서 fast transpose algorithm을 구현할 것
+*/
+
 int main()
 {
 	FILE* f;
