@@ -1,29 +1,25 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef int element;
+typedef enum{ False, True }Boolean;
 element* stack, capacity = 1, top = -1;
-enum bool{ False, True };
-typedef enum bool Boolean;
 
 Boolean isFull() {
-	if (top == capacity) return True;
-	else return False;
+	return (top == capacity - 1);
 }
 
 Boolean isEmpty() {
-	if (top < 0) return True;
-	else return False;
-}
-
-void stackFull() {
-	stack = (element*)realloc(stack, 2 * capacity * sizeof(element));
-	capacity *= 2;
+	return (top == -1);
 }
 
 void push(element item) {
-	if (isFull()) stackFull();
+	if (isFull() == True) {
+		capacity *= 2;
+		stack = (element*)realloc(stack, sizeof(element) * capacity);
+	}
 	stack[++top] = item;
 }
 
@@ -34,24 +30,29 @@ void pop() {
 void main() {
 	FILE* fp = fopen("in.txt", "r");
 	char ch;
+	int cnt = 0;
 	stack = (element*)malloc(sizeof(element));
 	while ((ch = fgetc(fp)) != EOF) {
 		if (ch >= '0' && ch <= '9') {
 			push(ch - '0');
 			printf("push item: %c", ch);
-			if (isFull(fp))
+			if (top - 1 == (int)(pow(2, cnt)) - 1) {
 				printf("\tdoubling: %d", capacity);
+				cnt++;
+			}
 			printf("\n");
 		}
 		else if (ch == 'D') {
 			pop();
-			if (isEmpty()) printf("stack empty: cannot POP!");
+			if (isEmpty() == True) {
+				printf("stack empty: cannot POP!");
+				continue;
+			}
 			else printf("pop\n");
 		}
 		else continue;
-		for (int i = 0; i < capacity; i++)
+		for (int i = 0; i <= top; i++)
 			printf("[%2d]", stack[i]);
 		printf("\n");
 	}
 }
-//덜했습니다... 죄송합니다...........
