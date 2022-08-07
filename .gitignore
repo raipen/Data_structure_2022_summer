@@ -53,3 +53,4 @@ dkms.conf
 
 test*.c
 desktop.ini
+*.txt
