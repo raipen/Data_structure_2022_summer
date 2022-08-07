@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum {CHAR,INT} TYPE;
-typedef struct {
-    TYPE type;
-    union {
+typedef union {
         int i;
         char c;
-    } data;
 } element;
 typedef enum {FALSE,TRUE} BOOL;
 typedef struct{
@@ -53,19 +49,6 @@ element peek(stack* s){
         exit(1);
     }
     return s->data[(s->top)];
-}
-
-void printElement(element item){
-    if(item.type==CHAR)
-        printf("%c",item.data.c);
-    else
-        printf("%d",item.data.i);
-}
-
-void printStack(stack* s){
-    while(!isEmpty(s))
-        printElement(pop(s));
-    printf("\n");
 }
 
 char* readInfixFromFile(FILE* filePointer){
@@ -125,22 +108,22 @@ char* convertInfixToPostfix(char* infix){
         else{
             //연산자는 지보다 높거나 같은게 먼저 드가있으면 걔가 먼저 계산되어야 하니까 빼내줘야함.
             int curPrecedence = inPrecedence(infix[i]);
-            while(!isEmpty(operatorStack)&&outPrecedence(peek(operatorStack).data.c)>=curPrecedence){
-                char temp = pop(operatorStack).data.c;
+            while(!isEmpty(operatorStack)&&outPrecedence(peek(operatorStack).c)>=curPrecedence){
+                char temp = pop(operatorStack).c;
                 if(temp=='(')
                     break;
                 postfix[indexOfPostfix++] = temp;
             }
             //그 담에 지보다 더 우선순위 높은게 뒤에 올수도 있으니 일단 무조건 push 해놔야함
             if(infix[i]!=')'){
-                element temp = {CHAR,{infix[i]}};
+                element temp = {infix[i]};
                 push(operatorStack,temp);
             }
         }
     }
 
     while(!isEmpty(operatorStack))//스택에 남은거 전부 출력
-        postfix[indexOfPostfix++] = pop(operatorStack).data.c;
+        postfix[indexOfPostfix++] = pop(operatorStack).c;
     postfix[indexOfPostfix] ='\0';
     return postfix;
 }
@@ -149,11 +132,11 @@ int EvaluationPostfix(char* postfix){
     stack* valueStack = newStack();
     for(int i=0;postfix[i];i++){
         if(isNumber(postfix[i])){
-            element temp = {INT,{postfix[i]-'0'}};
+            element temp = {postfix[i]-'0'};
             push(valueStack,temp);
         }else{
-            int a = pop(valueStack).data.i;
-            int b = pop(valueStack).data.i;
+            int a = pop(valueStack).i;
+            int b = pop(valueStack).i;
             int v;
             switch(postfix[i]){
                 case '+': v = b + a;break;
@@ -162,11 +145,11 @@ int EvaluationPostfix(char* postfix){
                 case '/': v = b / a;break;
                 case '%': v = b % a;break;
             }
-            element temp = {INT,{v}};
+            element temp = {v};
             push(valueStack,temp);
         }
     }
-    return pop(valueStack).data.i;
+    return pop(valueStack).i;
 }
 
 
