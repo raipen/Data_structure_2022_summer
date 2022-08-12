@@ -145,7 +145,6 @@ stack* solveMaze(matrix maze){
     push(path,start);
     while(!isEmpty(path)&&!isEqualCoor(peek(path).data,maze.end)){
         element cur = pop(path);
-        printf("%d %d\n",cur.data.row,cur.data.col);
         element* next = nextPath(&cur,maze.data,visited);
         if(next!=NULL){
             visited[next->data.row][next->data.col] = TRUE;
@@ -173,6 +172,6 @@ int main(void){
     printf("MAZE\n");
     printMaze(maze);
     stack* path = solveMaze(maze);
-    printf("The path is:\n");
+    printf(isEmpty(path)?"No path!\n":"The path is:\n");
     printPath(maze,path);
 }
