@@ -4,7 +4,7 @@
 coordinates dir[8] = {{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
 
 int main(void){
-    matrix* maze = readMazeFile("maze4.txt");
+    matrix* maze = readMazeFile("maze3.txt");
     printf("MAZE\n");
     printMaze(maze);
     stack* path = solveMaze(maze);
@@ -28,14 +28,14 @@ void readMazeSize_addWallSize(FILE* file,matrix* maze){
 }
 
 void CreateMazeWithWall(matrix* maze){
-    maze->data = CreateZeroFill2DArray(maze->size.row,maze->size.col);
+    maze->data = CreateZeroFill2DArray(maze->size);
     fillWall(maze);
 }
 
-int** CreateZeroFill2DArray(int row,int col){
-    int** temp = (int**) malloc(row*sizeof(int*));
-    for(int i=0; i<row; i++)
-        temp[i] = (int*) calloc(col,sizeof(int));
+int** CreateZeroFill2DArray(coordinates size){
+    int** temp = (int**) malloc(size.row*sizeof(int*));
+    for(int i=0; i<size.row; i++)
+        temp[i] = (int*) calloc(size.col,sizeof(int));
     return temp;
 }
 
@@ -60,9 +60,9 @@ void readMazeStartAndEnd(FILE* file,matrix* maze){
 }
 
 stack* solveMaze(matrix* maze){
-    int** visited = CreateZeroFill2DArray(maze->size.row,maze->size.col);
+    int** visited = CreateZeroFill2DArray(maze->size);
     stack* path = newStack();
-    element start = {{maze->start.row,maze->start.col},0};
+    element start = {maze->start,0};
     push(path,start);
     while(!isEmpty(path)&&!isEqualCoor(peek(path).data,maze->end)){
         element cur = pop(path);
@@ -74,6 +74,27 @@ stack* solveMaze(matrix* maze){
         }
     }
     return path;
+}
+
+stack* solveMaze_ppt(matrix* maze){    
+    int** visited = CreateZeroFill2DArray(maze->size);
+    stack* path = newStack();
+    element start = {maze->start,0};
+    push(path,start);
+    while(!isEmpty(path)&&!isEqualCoor(peek(path).data,maze->end)){
+        element cur = pop(path);
+        while(TRUE){
+            element* next = nextPath(&cur,maze->data,visited);
+            if(next==NULL)
+                break;
+            push(path,cur);
+            if(isEqualCoor(next->data,maze->end))
+                return path;
+            visited[next->data.row][next->data.col] = TRUE;
+            cur = *next;
+        }
+    }
+    return NULL;
 }
 
 BOOL isEqualCoor(coordinates c1,coordinates c2){
@@ -100,11 +121,7 @@ void printPath(matrix* maze, stack* path){
         maze->data[path->data[i].data.row][path->data[i].data.col] = PATH;
     maze->data[maze->start.row][maze->start.col]=START;
     maze->data[maze->end.row][maze->end.col]=FINISH;
-    for(int i=1; i<maze->size.row-1; i++){
-        for(int j=1;j<maze->size.col-1;j++)
-            printf("  %c",convertMazeInfo(maze->data[i][j]));
-        printf("\n");
-    }
+    printMaze(maze);
 }
 
 void printMaze(matrix* maze){

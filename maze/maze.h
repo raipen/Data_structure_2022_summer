@@ -21,11 +21,12 @@ typedef struct{
 matrix* readMazeFile(char* filename);
 void readMazeSize_addWallSize(FILE* file,matrix* maze);
 void CreateMazeWithWall(matrix* maze);
-int** CreateZeroFill2DArray(int row,int col);
+int** CreateZeroFill2DArray(coordinates size);
 void fillWall(matrix* maze);
 void readMazeInside(FILE* file,matrix* maze);
 void readMazeStartAndEnd(FILE* file,matrix* maze);
 stack* solveMaze(matrix* maze);
+stack* solveMaze_ppt(matrix* maze);
 BOOL isEqualCoor(coordinates c1,coordinates c2);
 element* nextPath(element* cur,int** maze,int** visited);
 void printPath(matrix* maze, stack* path);
