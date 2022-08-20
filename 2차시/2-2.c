@@ -7,6 +7,7 @@
 free(p[i]); 먼저하고
 printf("free arr[%d].\n", i); 얘를 출력하는게
 제대로 free 됐는지 확인 하는 방법 이긴 해
+-수정함.
 */
 
 int main()
@@ -36,9 +37,10 @@ int main()
 
 	for (i = 0;i < row;i++)
 	{
-		printf("free arr[%d].\n", i);
 		free(p[i]);
+		printf("free arr[%d].\n", i);
 	}
 	printf("free arr.");
 	free(p);
+	return 0;
 }
