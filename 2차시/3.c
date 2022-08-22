@@ -1,4 +1,4 @@
-//작동은 되는데 프린트되지 않음.
+// 시간복잡도 줄일 수 있도록 수정. 작동O
 
 //1. 반복되는 부분이 너무 많음. 이럴땐 함수로 묶어주는 것도 좋음
 //2. 두 자료가 내림차순으로 이루어져있다는 것을 사용하면 이중for문을 쓰지 않고 구현 가능
@@ -10,16 +10,18 @@
 void Comparison(int arr1[], int arr2[], int a, int b)
 {
     int i = 0, j = 0;
-    while (i == a && j == b) {
+    while (!(i == a && j == b)) {
         if (arr1[i] == arr2[j]) {
-            printf("%d", arr1[i]);
+            printf("%d  ", arr1[i]);
             i++;
             j++;
         }
-        else if (arr1[i] > arr2[j])
+        else if (arr1[i] > arr2[j]) {
             i++;
-        else
+        }            
+        else {
             j++;
+        }
     }
 }
 
