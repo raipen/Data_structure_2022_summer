@@ -55,18 +55,18 @@ void main() {
 	FILE* f1 = fopen("in1.txt", "r"), *f2 = fopen("search.txt", "r");
 	treePointer root = (node*)malloc(sizeof(node));
 	int input;
-	fscanf(f1, "%d", input);
+	fscanf(f1, "%d", &input);
 	root->data = input;
 	root->left = NULL, root->right = NULL;
 	while (!feof(f1)) {
-		fscanf(f1, "%d", input);
+		fscanf(f1, "%d", &input);
 		insert(root, input);
 	}
 	fclose(f1);
 	printf("Binary search tree(Inorder):");
 	inorder(root);
 	while (!feof(f2)) {
-		fscanf(f2, "%d", input);
+		fscanf(f2, "%d", &input);
 		printf("%d: %c\n", input, search(root, input));
 	}
 }
