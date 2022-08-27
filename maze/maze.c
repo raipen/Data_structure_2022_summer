@@ -81,7 +81,7 @@ stack* solveMaze_ppt(matrix* maze){
     stack* path = newStack();
     element start = {maze->start,0};
     push(path,start);
-    while(!isEmpty(path)&&!isEqualCoor(peek(path).data,maze->end)){
+    while(!isEmpty(path)){
         element cur = pop(path);
         while(TRUE){
             element* next = nextPath(&cur,maze->data,visited);
